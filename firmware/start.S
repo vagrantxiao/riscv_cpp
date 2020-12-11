@@ -47,15 +47,7 @@ lui gp, %hi(0xdeadbeef)
 addi gp, gp, %lo(0xdeadbeef)
 addi tp, gp, 0
 
-#ifdef ENABLE_DATA_REDIR
-/* call steam C code */
-jal ra,data_redir
-#endif
-
-jal ra,stream
-
-
-jal ra,stats
+jal ra,main
 
 /* print "DONE\n" */
 lui a0,0x10000000>>12

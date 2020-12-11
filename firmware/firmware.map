@@ -7,7 +7,7 @@ Archive member included to satisfy reference by file (symbol)
 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(muldi3.o)
                               firmware/stream.o (__mulsi3)
 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(div.o)
-                              firmware/print.o (__udivsi3)
+                              firmware/stream.o (__divsi3)
 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clzsi2.o)
                               /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(mulsf3.o) (__clzsi2)
 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clz.o)
@@ -70,87 +70,86 @@ mem              0x0000000000000000 0x0000000000002000
 Linker script and memory map
 
 
-.memory         0x0000000000000000      0xc9c
+.memory         0x0000000000000000      0xb34
                 0x0000000000000000                . = 0x0
  start*(.text)
  *(.text)
- .text          0x0000000000000000       0xc6 firmware/start.o
- .text          0x00000000000000c6      0x11c firmware/print.o
-                0x00000000000000c6                print_chr
-                0x00000000000000ce                print_str
-                0x00000000000000e0                print_dec
-                0x0000000000000130                print_float
-                0x00000000000001aa                print_hex
-                0x00000000000001d2                read_word
-                0x00000000000001da                write_word
- .text          0x00000000000001e2      0x312 firmware/stream.o
-                0x000000000000026c                stream
-                0x00000000000002d8                data_redir
- .text          0x00000000000004f4      0x110 firmware/stats.o
-                0x0000000000000582                stats
- .text          0x0000000000000604      0x320 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(mulsf3.o)
-                0x0000000000000604                __mulsf3
- .text          0x0000000000000924       0x64 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(fixunssfsi.o)
-                0x0000000000000924                __fixunssfsi
- .text          0x0000000000000988       0x24 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(muldi3.o)
-                0x0000000000000988                __mulsi3
- .text          0x00000000000009ac       0xb4 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(div.o)
-                0x00000000000009ac                __divsi3
-                0x00000000000009b4                __udivsi3
-                0x00000000000009fc                __umodsi3
-                0x0000000000000a30                __modsi3
- .text          0x0000000000000a60       0x4c /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clzsi2.o)
-                0x0000000000000a60                __clzsi2
- .text          0x0000000000000aac        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clz.o)
+ .text          0x0000000000000000       0xc2 firmware/start.o
+ .text          0x00000000000000c2      0x118 firmware/print.o
+                0x00000000000000c2                print_chr
+                0x00000000000000ca                print_str
+                0x00000000000000dc                print_dec
+                0x000000000000012c                print_float
+                0x00000000000001a2                print_hex
+                0x00000000000001ca                read_word
+                0x00000000000001d2                write_word
+ .text          0x00000000000001da      0x2f2 firmware/stream.o
+                0x0000000000000262                stream
+                0x00000000000002b0                data_redir
+ .text          0x00000000000004cc        0x0 firmware/main.o
+ *fill*         0x00000000000004cc        0x0 
+ .text          0x00000000000004cc      0x320 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(mulsf3.o)
+                0x00000000000004cc                __mulsf3
+ .text          0x00000000000007ec       0x64 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(fixunssfsi.o)
+                0x00000000000007ec                __fixunssfsi
+ .text          0x0000000000000850       0x24 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(muldi3.o)
+                0x0000000000000850                __mulsi3
+ .text          0x0000000000000874       0xb4 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(div.o)
+                0x0000000000000874                __divsi3
+                0x000000000000087c                __udivsi3
+                0x00000000000008c4                __umodsi3
+                0x00000000000008f8                __modsi3
+ .text          0x0000000000000928       0x4c /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clzsi2.o)
+                0x0000000000000928                __clzsi2
+ .text          0x0000000000000974        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clz.o)
  *(*)
- .data          0x0000000000000aac        0x0 firmware/start.o
- .bss           0x0000000000000aac        0x0 firmware/start.o
- .data          0x0000000000000aac        0x0 firmware/print.o
- .bss           0x0000000000000aac        0x0 firmware/print.o
+ .data          0x0000000000000974        0x0 firmware/start.o
+ .bss           0x0000000000000974        0x0 firmware/start.o
+ .data          0x0000000000000974        0x0 firmware/print.o
+ .bss           0x0000000000000974        0x0 firmware/print.o
  .rodata.str1.4
-                0x0000000000000aac       0x11 firmware/print.o
- *fill*         0x0000000000000abd        0x3 
- .srodata.cst4  0x0000000000000ac0        0x4 firmware/print.o
- .comment       0x0000000000000ac4       0x11 firmware/print.o
+                0x0000000000000974       0x11 firmware/print.o
+ *fill*         0x0000000000000985        0x3 
+ .srodata.cst4  0x0000000000000988        0x4 firmware/print.o
+ .comment       0x000000000000098c       0x11 firmware/print.o
                                          0x12 (size before relaxing)
- .data          0x0000000000000ad5        0x0 firmware/stream.o
- .bss           0x0000000000000ad5        0x0 firmware/stream.o
- *fill*         0x0000000000000ad5        0x3 
+ .data          0x000000000000099d        0x0 firmware/stream.o
+ .bss           0x000000000000099d        0x0 firmware/stream.o
+ *fill*         0x000000000000099d        0x3 
  .rodata.str1.4
-                0x0000000000000ad8       0x3a firmware/stream.o
- *fill*         0x0000000000000b12        0x2 
- .sbss          0x0000000000000b14        0xc firmware/stream.o
- .comment       0x0000000000000b20       0x12 firmware/stream.o
- .data          0x0000000000000b20        0x0 firmware/stats.o
- .bss           0x0000000000000b20        0x0 firmware/stats.o
- .rodata.str1.4
-                0x0000000000000b20       0x40 firmware/stats.o
-                                         0x3e (size before relaxing)
- .comment       0x0000000000000b60       0x12 firmware/stats.o
- .data          0x0000000000000b60        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(mulsf3.o)
- .bss           0x0000000000000b60        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(mulsf3.o)
- .rodata        0x0000000000000b60       0x3c /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(mulsf3.o)
- .comment       0x0000000000000b9c       0x12 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(mulsf3.o)
- .data          0x0000000000000b9c        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(fixunssfsi.o)
- .bss           0x0000000000000b9c        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(fixunssfsi.o)
- .comment       0x0000000000000b9c       0x12 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(fixunssfsi.o)
- .data          0x0000000000000b9c        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(muldi3.o)
- .bss           0x0000000000000b9c        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(muldi3.o)
- .data          0x0000000000000b9c        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(div.o)
- .bss           0x0000000000000b9c        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(div.o)
- .data          0x0000000000000b9c        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clzsi2.o)
- .bss           0x0000000000000b9c        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clzsi2.o)
- .comment       0x0000000000000b9c       0x12 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clzsi2.o)
- .data          0x0000000000000b9c        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clz.o)
- .bss           0x0000000000000b9c        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clz.o)
- .rodata        0x0000000000000b9c      0x100 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clz.o)
-                0x0000000000000b9c                __clz_tab
- .comment       0x0000000000000c9c       0x12 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clz.o)
-                0x0000000000000cae                end = .
-                0x0000000000000cb0                . = ALIGN (0x4)
+                0x00000000000009a0       0x3c firmware/stream.o
+                                         0x3a (size before relaxing)
+ .sbss          0x00000000000009dc        0xc firmware/stream.o
+ .comment       0x00000000000009e8       0x12 firmware/stream.o
+ .data          0x00000000000009e8        0x0 firmware/main.o
+ .bss           0x00000000000009e8        0x0 firmware/main.o
+ .text.startup  0x00000000000009e8       0x10 firmware/main.o
+                0x00000000000009e8                main
+ .comment       0x00000000000009f8       0x12 firmware/main.o
+ .data          0x00000000000009f8        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(mulsf3.o)
+ .bss           0x00000000000009f8        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(mulsf3.o)
+ .rodata        0x00000000000009f8       0x3c /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(mulsf3.o)
+ .comment       0x0000000000000a34       0x12 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(mulsf3.o)
+ .data          0x0000000000000a34        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(fixunssfsi.o)
+ .bss           0x0000000000000a34        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(fixunssfsi.o)
+ .comment       0x0000000000000a34       0x12 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(fixunssfsi.o)
+ .data          0x0000000000000a34        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(muldi3.o)
+ .bss           0x0000000000000a34        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(muldi3.o)
+ .data          0x0000000000000a34        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(div.o)
+ .bss           0x0000000000000a34        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(div.o)
+ .data          0x0000000000000a34        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clzsi2.o)
+ .bss           0x0000000000000a34        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clzsi2.o)
+ .comment       0x0000000000000a34       0x12 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clzsi2.o)
+ .data          0x0000000000000a34        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clz.o)
+ .bss           0x0000000000000a34        0x0 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clz.o)
+ .rodata        0x0000000000000a34      0x100 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clz.o)
+                0x0000000000000a34                __clz_tab
+ .comment       0x0000000000000b34       0x12 /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a(_clz.o)
+                0x0000000000000b46                end = .
+                0x0000000000000b48                . = ALIGN (0x4)
 LOAD firmware/start.o
 LOAD firmware/print.o
 LOAD firmware/stream.o
-LOAD firmware/stats.o
+LOAD firmware/main.o
 LOAD /opt/riscv32i/lib/gcc/riscv32-unknown-elf/8.2.0/libgcc.a
 OUTPUT(firmware/firmware.elf elf32-littleriscv)

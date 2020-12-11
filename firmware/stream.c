@@ -36,8 +36,9 @@ void stream(void)
   //float x=0;
   
   //x = 1.43456;
-  unsigned int num_cycles, num_instr;
-  __asm__ volatile ("rdcycle %0; rdinstret %1;" : "=r"(num_cycles), "=r"(num_instr));
+  //unsigned int num_cycles, num_instr;
+  int num_cycles = 48;
+  //__asm__ volatile ("rdcycle %0; rdinstret %1;" : "=r"(num_cycles), "=r"(num_instr));
   print_str("before write_stream");
   stats_print_dec(num_cycles, 8, false);
 
@@ -48,7 +49,7 @@ void stream(void)
     write_word(i);
   }
 
-   __asm__ volatile ("rdcycle %0; rdinstret %1;" : "=r"(num_cycles), "=r"(num_instr));
+  //__asm__ volatile ("rdcycle %0; rdinstret %1;" : "=r"(num_cycles), "=r"(num_instr));
   print_str("after write_stream");
   stats_print_dec(num_cycles, 8, false);
 
@@ -65,7 +66,7 @@ void stream(void)
     //print_dec(din);
    // print_str("\n");
   }
-  __asm__ volatile ("rdcycle %0; rdinstret %1;" : "=r"(num_cycles), "=r"(num_instr));
+  //__asm__ volatile ("rdcycle %0; rdinstret %1;" : "=r"(num_cycles), "=r"(num_instr));
   print_str("after read_stream");
   stats_print_dec(num_cycles, 8, false);
 
