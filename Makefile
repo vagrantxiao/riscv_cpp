@@ -38,16 +38,16 @@ firmware/firmware.bin: firmware/firmware.elf
 	chmod -x $@
 
 firmware/firmware.elf: $(FIRMWARE_OBJS) $(TEST_OBJS) firmware/sections.lds
-	$(TOOLCHAIN_PREFIX)gcc -Os -ffreestanding -nostdlib -o $@ \
+	$(TOOLCHAIN_PREFIX)g++ -Os -ffreestanding -nostdlib -o $@ \
 		-Wl,-Bstatic,-T,firmware/sections.lds,-Map,firmware/firmware.map,--strip-debug \
 		$(FIRMWARE_OBJS) $(TEST_OBJS) -lgcc
 	chmod -x $@
 
 firmware/start.o: firmware/start.S
-	$(TOOLCHAIN_PREFIX)gcc -c -march=rv32im$(subst C,c,$(COMPRESSED_ISA)) -o $@ $<
+	$(TOOLCHAIN_PREFIX)g++ -c -march=rv32im$(subst C,c,$(COMPRESSED_ISA)) -o $@ $<
 
-firmware/%.o: firmware/%.c
-	$(TOOLCHAIN_PREFIX)gcc -c -march=rv32i$(subst C,c,$(COMPRESSED_ISA)) -Os --std=c99 $(GCC_WARNS) -ffreestanding -nostdlib -o $@ $<
+firmware/%.o: firmware/%.cpp
+	$(TOOLCHAIN_PREFIX)g++ -c -march=rv32i$(subst C,c,$(COMPRESSED_ISA)) -Os  $(GCC_WARNS) -ffreestanding -nostdlib -o $@ $<
 
 
 
